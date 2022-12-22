@@ -1,0 +1,27 @@
+SELECT * FROM dbms_exp.customers;
+select lower(first_name), upper(last_name) from customers;
+
+select concat(first_name, ' ' ,last_name) as full_name from customers;
+
+select replace('Harry', 'a', 'e') from customers limit 1;
+
+select reverse(country) from customers;
+
+select trim(leading 'H'from first_name) as first_name_trim from customers; 
+select trim(trailing 'r' from last_name) as last_name_trim from customers;
+
+select substr(first_name, 2, 7) from customers;
+
+select * from customers where first_name like 'H%';
+select * from customers where last_name like '%r';
+
+select * from customers where first_name REGEXP '^T';
+select * from customers where first_name REGEXP '[eom]';
+
+
+select * from dbms_exp.employee;
+select e_name, extract(year from hiredate) as hire_year from employee;
+select e_name, day(hiredate) from employee;
+select e_name, dayname(hiredate) from employee;
+select e_name, monthname(hiredate) from employee;
+select e_name, date_format(hiredate, '%W %M %Y') from employee;

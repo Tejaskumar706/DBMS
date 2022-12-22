@@ -1,0 +1,66 @@
+SELECT * FROM dbms_exp.customers;
+use  dbms_exp; 
+show tables;
+create table customers(
+	customer_id int not null,
+	first_name varchar(30) not null,
+	last_name varchar(30) not null,
+	age int not null,
+	country varchar(30),
+	primary key(customer_id));
+insert into customers(customer_id, first_name, last_name, age, country) VALUES
+    (1, 'Harry', 'Potter', 17 , 'UK'),
+    (2, 'Hermoine', 'Granger', 18 , 'USA'),
+    (3, 'Ronald', 'Weasley', 20 , 'UK'),
+    (4, 'Tom', 'Riddle', 34 , 'Florida'),
+    (5, 'Peter', 'Parker', 24 , 'India');
+    
+select * from customers;
+
+create table if not exists Orders(
+order_id int AUTO_INCREMENT,
+amount int not null,
+customer int,
+primary key (order_id));
+
+insert into Orders(order_id, amount, customer) VALUES
+(1, 200, 10),
+(2, 500, 3),
+(3, 300, 6),
+(4, 800, 5),
+(5, 150, 8);
+
+select * from Orders;
+
+SELECT C.customer_id AS cid, C.first_name AS name, O.amount
+FROM Customers AS C
+JOIN Orders AS O
+ON C.customer_id = O.customer;
+
+SELECT Customers.customer_id, Customers.first_name, Orders.amount
+FROM Customers
+INNER JOIN Orders
+ON Customers.customer_id = Orders.customer
+WHERE Orders.amount >= 500;
+
+SELECT Customers.customer_id, Customers.first_name, Orders.amount
+FROM Customers
+LEFT OUTER JOIN Orders
+ON Customers.customer_id = Orders.customer
+UNION 
+SELECT Customers.customer_id, Customers.first_name, Orders.amount
+FROM Customers
+RIGHT OUTER JOIN Orders
+ON Customers.customer_id = Orders.customer;
+
+
+select count(country) as TotalCountries from customers;
+
+select count(distinct country) as alg_country from customers;
+
+select customer, min(amount) from orders; 
+select first_name, max(age) from customers; 
+
+select sum(amount) from orders;
+
+select avg(age) from customers;

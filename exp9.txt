@@ -1,0 +1,27 @@
+use dbms_exp;
+
+create table Stu_Table(Stu_Id integer(2), Stu_Name varchar(15), Stu_Class  varchar(10));
+
+insert into Stu_Table values(1,'Komal',10);
+insert into Stu_Table values(2,'Ajay',10);
+insert into Stu_Table values(3,'Rakesh',10);
+insert into Stu_Table values(4,'Bhanu',10);
+insert into Stu_Table values(5,'Santosh',10);
+insert into Stu_Table values(6,'Tanuj',10);
+
+select * from Stu_Table;
+
+
+DELIMITER $$
+create procedure close_cursor( id int)
+  begin
+	DECLARE name varchar(10);
+	DECLARE cur1 CURSOR FOR SELECT Stu_Name from stu_table where Stu_Id =id;
+	OPEN cur1;
+	Fetch cur1 into name;
+	select name;
+	close cur1;
+end$$
+DELIMITER ;
+
+Call close_cursor(3);

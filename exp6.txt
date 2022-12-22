@@ -1,0 +1,36 @@
+use  dbms_exp; 
+show tables;
+insert into customers(customer_id, first_name, last_name, age, country) VALUES
+    (1, 'Harry', 'Potter', 17 , 'UK'),
+    (2, 'Hermoine', 'Granger', 18 , 'USA'),
+    (3, 'Ronald', 'Weasley', 20 , 'UK'),
+    (4, 'Tom', 'Riddle', 34 , 'Florida'),
+    (5, 'Peter', 'Parker', 24 , 'India');
+    
+select * from customers;
+
+create table if not exists Orders(
+order_id int AUTO_INCREMENT,
+amount int not null,
+customer int,
+primary key (order_id));
+
+insert into Orders(order_id, amount, customer) VALUES
+(1, 200, 10),
+(2, 500, 3),
+(3, 300, 6),
+(4, 800, 5),
+(5, 150, 8);
+
+show columns from customers;
+Alter table customers MODIFY first_name char(100) not null;
+show columns from customers;
+select * from employee;
+
+select deptno, round(avg(salary), 2) from employee group by deptno;
+
+select emp_city, group_concat(E_name) from employee group by emp_city having emp_city LIKE 'D%';
+
+select emp_city, E_name from employee group by E_name having emp_city LIKE 'D%';
+
+select E_name, salary, job from employee ORDER BY salary asc;

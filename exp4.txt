@@ -1,0 +1,46 @@
+create database product;
+use product;
+create table employee( 
+E_no int not null,
+E_name varchar(20) not null,
+Job varchar(20) not null,
+age int not null,
+Hiredate date not null,
+salary int not null,
+commision int null,
+emp_city varchar(20),
+deptno int not null,
+primary key (E_no));
+
+INSERT INTO employee(E_no, E_name, job, age, Hiredate, salary, commision, emp_city, deptno)
+VALUES(7369,'SMITH','CLERK',23,'2020-12-17',5000,800,'Delhi',20),
+		(7499,'ALLEN','SALESMAN',24,'2020-02-20',4000,600,'Mumbai',30),
+		(7566,'JONES','MANAGER',32,'2014-01-17',15000,1800,'Delhi',20),
+		(7788,'SCOTT','ANALYST',20,'2020-11-06',4000,0,'Jaipur',10),
+		(7839,'BOSS','PRESIDENT',42,'2008-09-12',150000,2800,'Delhi',10);
+1.Basic Select query
+SELECT *
+FROM employee;
+SELECT E_name, emp_city
+FROM employee;
+SELECT *
+FROM employee
+WHERE age<28 and emp_city="Delhi";
+SELECT distinct E_name, emp_city
+ FROM employee;
+2.Restricting and Sorting Data
+SELECT E_name,salary,commision
+ FROM employee
+ WHERE salary <= 10000;
+SELECT distinct E_name,job, deptno
+ FROM employee
+ WHERE deptno = 10;
+SELECT E_name,job, deptno, salary
+ FROM employee
+ WHERE salary between 4000 and 15000;
+SELECT E_name, Job
+FROM employee
+WHERE E_name LIKE 'B%' or 'S%';
+SELECT E_name , Job, deptno, emp_city
+ FROM employee
+ ORDER BY E_name desc;
